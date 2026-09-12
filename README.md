@@ -183,3 +183,14 @@ Full walkthrough: [docs/installation.md](./docs/installation.md)
 
 ### Aroma Googlesheet :
 ![This is a Aroma Googlesheet](<Screenshots & Demo/Aroma Reservation Sheet.png>)
+
+## 🔮 Future Improvements
+ 
+- ✅ **Staff confirmation loop** — add a simple staff-facing "Confirm / Decline" action (email button or small internal form) that updates the Google Sheets status and triggers a follow-up email to the guest.
+- 📅 **Calendar/availability check** — cross-reference requested date/time against a real booking calendar before accepting a request, instead of accepting all requests as pending.
+- 🔁 **Duplicate-request detection** — detect and flag repeated submissions from the same guest for the same date/time.
+- 📊 **Daily digest for staff** — a scheduled workflow that emails staff a daily summary of all pending requests instead of one email per request.
+- 🌍 **Multi-language guest emails** — detect the guest's browser language and send the confirmation email accordingly.
+- 🔐 **Webhook authentication** — add a shared secret / signature check so the webhook only accepts requests genuinely originating from the Aroma website.
+- 🧪 **Automated evaluation pipeline** — use n8n's Evaluations tab to regression-test the validation logic against a set of known-good and known-bad payloads.
+---
