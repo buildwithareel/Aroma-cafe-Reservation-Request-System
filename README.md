@@ -108,3 +108,23 @@ flowchart TB
  
 ---
  
+## 🧩 Node-by-Node Breakdown
+ 
+| # | Node | Type | Purpose |
+|---|---|---|---|
+| 1 | **01 - Reservation Webhook** | `n8n-nodes-base.webhook` | Entry point. Listens for `POST` requests at `/aroma-reservation` sent by the website's reservation form. |
+| 2 | **02 - Validate Request** | `n8n-nodes-base.code` | Server-side validation of every field — required fields, email format, positive guest count, and an allow-list of seating preferences. Produces a clean `isValid` flag and normalized fields. |
+| 3 | **03 - Valid Request?** | `n8n-nodes-base.if` | Branches the workflow based on the `isValid` flag from the previous step. |
+| 4 | **04 - Generate Request ID** | `n8n-nodes-base.code` | Builds a unique, human-readable Request ID (e.g. `AR-20260910-3F2A`) and sets the initial status to `Pending Confirmation`. |
+| 5 | **05 - Prepare Reservation Data** | `n8n-nodes-base.code` | Converts the raw date/time into friendly display strings (e.g. `September 10, 2026`, `12:00 PM`) for use in the emails and spreadsheet. |
+| 6 | **06 - Save to Google Sheets** | `n8n-nodes-base.googleSheets` (`append`) | Appends the fully processed reservation as a new row in the restaurant's request-tracking spreadsheet. |
+| 7 | **07 - Email Customer** | `n8n-nodes-base.emailSend` | Sends a branded HTML confirmation email to the guest, summarizing their request and clearly marking it as pending. |
+| 8 | **08 - Notify Restaurant Staff** | `n8n-nodes-base.emailSend` | Sends a separate staff-facing HTML email with the full reservation details, formatted for quick review. |
+| 9 | **09 - Respond to Website (Success)** | `n8n-nodes-base.respondToWebhook` | Returns a `200` JSON response confirming the request was received, including the Request ID. |
+| 10 | **10 - Respond to Website (Validation Error)** | `n8n-nodes-base.respondToWebhook` | Returns a `400` JSON response with a human-readable error message when validation fails. |
+| 11 | **11 - Respond to Website (Processing Failed)** | `n8n-nodes-base.respondToWebhook` | Returns a `500` JSON response if the Sheets write or either email send fails after validation passed. |
+ 
+> 📖 For full field-by-field code and logic details, see [docs/codenode.md](./docs/codenode.md).
+ 
+---
+ 
