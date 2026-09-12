@@ -194,3 +194,13 @@ Full walkthrough: [docs/installation.md](./docs/installation.md)
 - 🔐 **Webhook authentication** — add a shared secret / signature check so the webhook only accepts requests genuinely originating from the Aroma website.
 - 🧪 **Automated evaluation pipeline** — use n8n's Evaluations tab to regression-test the validation logic against a set of known-good and known-bad payloads.
 ---
+## 📄 License
+ 
+This project is licensed under the [MIT License](LICENSE).
+ 
+---
+ 
+## 🙋‍♂️ Author
+ 
+Built and maintained by **[@buildwithareel](https://github.com/buildwithareel)** — exploring AI automation, agentic workflows, and n8n-based systems.
+ 
