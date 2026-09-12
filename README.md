@@ -145,4 +145,14 @@ flowchart TB
 🔑 Full credential and field configuration: [docs/configuration.md](./docs/configuration.md)
  
 ---
+## 🚀 How to Import & Run
  
+1. Clone this repository and import `aroma-reservation-workflow.json` into n8n.
+2. Connect your Google Sheets and email credentials.
+3. Point your website's reservation form to the workflow's webhook URL.
+4. Activate the workflow and submit a test reservation.
+Full walkthrough: [docs/installation.md](./docs/installation.md)
+ 
+---
+
+
