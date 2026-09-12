@@ -13,4 +13,17 @@ This is a portfolio demo built end-to-end: a real front-end reservation form, a 
   <img alt="License" src="https://img.shields.io/badge/License-MIT-lightgrey">
 </p>
 ---
+## 📌 Overview
  
+**Aroma** is a fictional café built as a portfolio demo, with a real reservation form on its website. When a guest submits the form, it sends a `POST` request to an n8n webhook, which:
+ 
+1. Validates every field server-side (not just in the browser).
+2. Generates a unique, human-readable **Request ID**.
+3. Formats the reservation into clean, display-ready values.
+4. Appends the full request to a **Google Sheet** acting as the restaurant's request log.
+5. Emails the **guest** a branded confirmation that their request was received (not yet confirmed).
+6. Emails the **restaurant staff** the full reservation details so they can follow up and confirm availability.
+7. Returns a clear JSON response back to the website so the front end can show a success or error state.
+Unlike a simple "form → spreadsheet" integration, this workflow treats every reservation as a **request that must be manually confirmed** by the restaurant — mirroring how most real independent restaurants actually operate.
+ 
+---
