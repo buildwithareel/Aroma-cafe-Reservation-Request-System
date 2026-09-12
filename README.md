@@ -25,7 +25,19 @@ This is a portfolio demo built end-to-end: a real front-end reservation form, a 
 5. Emails the **guest** a branded confirmation that their request was received (not yet confirmed).
 6. Emails the **restaurant staff** the full reservation details so they can follow up and confirm availability.
 7. Returns a clear JSON response back to the website so the front end can show a success or error state.
+
 Unlike a simple "form → spreadsheet" integration, this workflow treats every reservation as a **request that must be manually confirmed** by the restaurant — mirroring how most real independent restaurants actually operate.
  
 ---
 
+## ✨ Features
+ 
+- 🧾 **Server-side validation** — every field (name, email format, phone, date, time, guest count, seating preference) is validated inside the workflow itself, not just trusted from the browser form.
+- 🆔 **Human-readable Request IDs** — auto-generated IDs like `AR-20260910-3F2A` make it easy for staff to reference a specific request in conversation or email.
+- 📋 **Structured request log** — every reservation, valid or not, is captured with a consistent schema (name, contact info, date/time, party size, seating preference, special requests, source, and status) in Google Sheets.
+- 📧 **Dual HTML email notifications** — a branded confirmation email to the guest, and a separate staff-facing summary email, each with its own tailored template.
+- 🚦 **Explicit "Pending Confirmation" status** — every new request is clearly marked as unconfirmed, both in the spreadsheet and in the guest-facing email, avoiding false expectations.
+- 🔁 **Three distinct response paths** — success, validation error, and processing failure are each handled with their own dedicated response node and correct HTTP status code.
+- 🌐 **Decoupled front end** — the workflow only cares about receiving a well-formed JSON payload, so any website, form builder, or app can act as the front end.
+---
+ 
