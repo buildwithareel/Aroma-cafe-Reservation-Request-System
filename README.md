@@ -13,6 +13,7 @@ This is a portfolio demo built end-to-end: a real front-end reservation form, a 
   <img alt="License" src="https://img.shields.io/badge/License-MIT-lightgrey">
 </p>
 ---
+
 ## 📌 Overview
  
 **Aroma** is a fictional café built as a portfolio demo, with a real reservation form on its website. When a guest submits the form, it sends a `POST` request to an n8n webhook, which:
@@ -27,3 +28,4 @@ This is a portfolio demo built end-to-end: a real front-end reservation form, a 
 Unlike a simple "form → spreadsheet" integration, this workflow treats every reservation as a **request that must be manually confirmed** by the restaurant — mirroring how most real independent restaurants actually operate.
  
 ---
+
