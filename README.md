@@ -167,4 +167,19 @@ Full walkthrough: [docs/installation.md](./docs/installation.md)
  
 ---
 
+## 📸 Screenshots & Demo
 
+ ### Actuall Automation Workflow :
+![This is a Backend Automation workflow of n8n](<Screenshots & Demo/Aroma Backend Automation.png>)
+
+### Arom Reservation website:
+![This is a Aroma Reservation request demo website](<Screenshots & Demo/Restaurant Reservation Request System .png>)
+
+### Request Table :
+![This is Request Table in website](<Screenshots & Demo/Request Table.png>)
+
+### Request submitted :
+![This is a request submitted recipt](<Screenshots & Demo/Request done Aroma .png>)
+
+### Aroma Googlesheet :
+![This is a Aroma Googlesheet](<Screenshots & Demo/Aroma Reservation Sheet.png>)
