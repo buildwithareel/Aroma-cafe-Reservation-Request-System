@@ -1,0 +1,77 @@
+# ============================
+# Aroma Reservation Request System
+# .gitignore
+# ============================
+
+# --- Secrets & Credentials ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*credentials*.json
+*secrets*.json
+n8n_credentials*.json
+
+# --- Real/working copies of the workflow (keep only the sanitized main JSON) ---
+*-real.json
+*-local.json
+*-live.json
+*.backup.json
+*-export.json
+
+# --- n8n local runtime data ---
+.n8n/
+n8n-data/
+*.sqlite
+*.sqlite3
+
+# --- Front-end build artifacts (if the Aroma demo site lives in this repo) ---
+node_modules/
+dist/
+build/
+.next/
+.vercel/
+.netlify/
+
+# --- Node.js ---
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# --- Python (if any helper/test scripts are used) ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# --- Test data / sample payloads with real guest info ---
+/test-data/real-*.json
+/test-payloads/*-real.json
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editor/IDE files ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Logs ---
+*.log
+logs/
+
+# --- Temp / cache ---
+*.tmp
+*.temp
+.cache/
+
+# --- Screenshots/demo working files (raw, unedited) ---
+/raw-screenshots/
