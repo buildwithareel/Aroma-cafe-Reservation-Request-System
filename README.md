@@ -41,3 +41,70 @@ Unlike a simple "form → spreadsheet" integration, this workflow treats every r
 - 🌐 **Decoupled front end** — the workflow only cares about receiving a well-formed JSON payload, so any website, form builder, or app can act as the front end.
 ---
  
+## 🗺️ Workflow Architecture
+ 
+```mermaid
+flowchart TB
+    SITE["🌐 Aroma Website<br/>Reservation Form"]:::external
+ 
+    subgraph PHASE1["① Intake & Validation"]
+        direction TB
+        WH["🔗 01 - Reservation Webhook<br/><sub>POST /aroma-reservation</sub>"]:::trigger
+        VAL["🧪 02 - Validate Request<br/><sub>Code node</sub>"]:::trigger
+        CHK["✅ 03 - Valid Request?"]:::trigger
+    end
+ 
+    subgraph PHASE2["② Processing"]
+        direction TB
+        GEN["🆔 04 - Generate Request ID<br/><sub>Code node</sub>"]:::process
+        PREP["🧹 05 - Prepare Reservation Data<br/><sub>Code node</sub>"]:::process
+        SHEET["📋 06 - Save to Google Sheets<br/><sub>append</sub>"]:::process
+    end
+ 
+    subgraph PHASE3["③ Notification"]
+        direction TB
+        EMAILC["📧 07 - Email Customer"]:::notify
+        EMAILS["📧 08 - Notify Restaurant Staff"]:::notify
+    end
+ 
+    subgraph PHASE4["④ Response to Website"]
+        direction TB
+        R200["↩️ 09 - Respond (Success)<br/><sub>200</sub>"]:::success
+        R400["↩️ 10 - Respond (Validation Error)<br/><sub>400</sub>"]:::errorNode
+        R500["↩️ 11 - Respond (Processing Failed)<br/><sub>500</sub>"]:::errorNode
+    end
+ 
+    SITE -->|form submit| WH --> VAL --> CHK
+    CHK -->|true| GEN --> PREP --> SHEET
+    CHK -->|false| R400
+ 
+    SHEET -->|success| EMAILC
+    SHEET -->|error| R500
+ 
+    EMAILC -->|success| EMAILS
+    EMAILC -->|error| R500
+ 
+    EMAILS -->|success| R200
+    EMAILS -->|error| R500
+ 
+    R200 -.->|JSON response| SITE
+    R400 -.->|JSON response| SITE
+    R500 -.->|JSON response| SITE
+ 
+    classDef external fill:#4b2e1e,stroke:#4b2e1e,color:#f3e6d8,font-weight:bold
+    classDef trigger fill:#1f2937,stroke:#EA4B71,color:#ffffff,stroke-width:1.5px
+    classDef process fill:#1f2937,stroke:#8b5cf6,color:#ffffff,stroke-width:1.5px
+    classDef notify fill:#1f2937,stroke:#EA4335,color:#ffffff,stroke-width:1.5px
+    classDef success fill:#1f2937,stroke:#34A853,color:#ffffff,stroke-width:1.5px
+    classDef errorNode fill:#1f2937,stroke:#f59e0b,color:#ffffff,stroke-width:1.5px
+ 
+    style PHASE1 fill:#0d1117,stroke:#30363d,color:#c9d1d9
+    style PHASE2 fill:#0d1117,stroke:#30363d,color:#c9d1d9
+    style PHASE3 fill:#0d1117,stroke:#30363d,color:#c9d1d9
+    style PHASE4 fill:#0d1117,stroke:#30363d,color:#c9d1d9
+```
+ 
+> 📖 For a deeper technical breakdown, see [docs/workflow-architecture.md](./docs/workflow-architecture.md).
+ 
+---
+ 
