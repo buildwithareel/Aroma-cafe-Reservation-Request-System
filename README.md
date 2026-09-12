@@ -155,4 +155,16 @@ Full walkthrough: [docs/installation.md](./docs/installation.md)
  
 ---
 
+## 📖 Documentation
+ 
+| Doc | Covers |
+|---|---|
+| [docs/installation.md](./docs/installation.md) | Step-by-step setup from import to activation |
+| [docs/configuration.md](./docs/configuration.md) | Every credential, field, and environment setting |
+| [docs/workflow-architecture.md](./docs/workflow-architecture.md) | Deep technical breakdown of the full pipeline |
+| [docs/codenode.md](./docs/codenode.md) | Full explanation of the JavaScript inside each Code node |
+| [docs/workflow-guide.md](./docs/workflow-guide.md) | How to use, test, and extend the workflow day-to-day |
+ 
+---
+
 
