@@ -127,4 +127,22 @@ flowchart TB
 > 📖 For full field-by-field code and logic details, see [docs/codenode.md](./docs/codenode.md).
  
 ---
+
+## 🛡️ Error Handling Design
+ 
+- **Validation is a hard gate.** Malformed submissions never reach Google Sheets or trigger any email — they're rejected immediately at node `03` with a `400` response and a specific error message.
+- **Every downstream node has an error branch.** The Google Sheets write and both email-send nodes each route their `error` output to the same `11 - Respond to Website (Processing Failed)` node, so any mid-pipeline failure still returns a clean, predictable `500` response to the website instead of hanging or crashing silently.
+- **The website always gets an answer.** All three outcomes — success, validation error, and processing failure — are handled by a dedicated `Respond to Webhook` node with the correct HTTP status code, so the front end can reliably branch its UI (success message vs. inline form errors vs. generic failure message).
+---
+ 
+## ✅ Prerequisites & Setup
+ 
+- An **n8n instance** (Cloud or self-hosted).
+- A **Google account** with access to Google Sheets and a spreadsheet configured for request logging.
+- An **SMTP-capable email account** (or n8n-supported email credential) for sending both the customer and staff notifications.
+- A **website or form** capable of submitting a `POST` request with a JSON body to the workflow's webhook URL (this repo includes the Aroma demo site's expected field names).
+📎 Full step-by-step setup: [docs/installation.md](./docs/installation.md)
+🔑 Full credential and field configuration: [docs/configuration.md](./docs/configuration.md)
+ 
+---
  
