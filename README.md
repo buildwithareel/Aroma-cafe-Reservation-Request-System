@@ -167,7 +167,7 @@ Full walkthrough: [docs/installation.md](./docs/installation.md)
  
 ---
 
-## 📸 Screenshots & Demo
+## 📸 Screenshots 
 
  ### Actuall Automation Workflow :
 ![This is a Backend Automation workflow of n8n](<Screenshots & Demo/Aroma Backend Automation.png>)
